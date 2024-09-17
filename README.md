@@ -10,9 +10,11 @@ Shift   : C
 
 Dalam widget FormData pada file form_data.dart, telah tersedia tiga TextEditingController:
 
+```dart
 final _namaController = TextEditingController();
 final _nimController = TextEditingController();
 final _tahunController = TextEditingController();
+```
 
 yang mana terhubung ke text field untuk nama, NIM, dan tahun.
 
@@ -27,13 +29,16 @@ int tahun = int.parse(_tahunController.text);
 ## 3. Mengirimkan data ke tampil_data
 Data yang telah dikumpulkan kemudian dikirim ke widget TampilData pada tampil_data.dart dengan method "Navigator.push():" pada _tombolSimpan()
 
+```dart
 Navigator.of(context).push(MaterialPageRoute(
     builder: (context) =>
         TampilData(nama: nama, nim: nim, tahun: tahun)));
+```
 
 ## 4. Menerima data di tampil_data
 Widget TampilData kemudian akan menerima data melalui constructornya:
 
+```dart
 class TampilData extends StatelessWidget {
   final String nama;
   final String nim;
@@ -46,11 +51,12 @@ class TampilData extends StatelessWidget {
     required this.tahun,
   }) : super(key: key);
 }
-
+```
 
 ## 5. Menampilkan data
 Terakhir, dalam widget TampilData, data yang diterima akan digunakan untuk membuat tampilan:
 
+```dart
   @override
   Widget build(BuildContext context) {
     final int umur = DateTime.now().year - tahun;
@@ -91,6 +97,7 @@ Terakhir, dalam widget TampilData, data yang diterima akan digunakan untuk membu
       ),
     );
   }
+```
 
 Dengan demikian, widget TampilData telah berhasil mengambil data yang dikirim dari form_data.dart, mengolahnya dalam menghitung umur, dan menampilkannya kepada user.
 
