@@ -19,13 +19,17 @@ class FormDataState extends State<FormData> {
       appBar: AppBar(
         title: const Text("Input Data"),
       ),
+      backgroundColor: const Color.fromARGB(255, 96, 170, 250),
       body: Container(
         margin: const EdgeInsets.all(10),
         child: Column(
           children: [
             _textboxNama(),
+            const SizedBox(height: 5),
             _textboxNIM(),
+            const SizedBox(height: 5),
             _textboxTahun(),
+            const SizedBox(height: 10),
             _tombolSimpan()
           ],
         ),
@@ -35,35 +39,74 @@ class FormDataState extends State<FormData> {
 
   _textboxNama() {
     return TextField(
-      decoration: const InputDecoration(labelText: "Nama"),
+      decoration: InputDecoration(
+          labelText: "Nama",
+          filled: true,
+          fillColor: Color.fromARGB(255, 255, 89, 0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          )),
       controller: _namaController,
     );
   }
 
   _textboxNIM() {
     return TextField(
-      decoration: const InputDecoration(labelText: "NIM"),
+      decoration: InputDecoration(
+          labelText: "NIM",
+          filled: true,
+          fillColor: Color.fromARGB(255, 255, 89, 0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          )),
       controller: _nimController,
     );
   }
 
   _textboxTahun() {
     return TextField(
-      decoration: const InputDecoration(labelText: "Tahun Lahir"),
+      decoration: InputDecoration(
+          labelText: "Tahun",
+          filled: true,
+          fillColor: Color.fromARGB(255, 255, 89, 0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          )),
       controller: _tahunController,
     );
   }
 
   _tombolSimpan() {
-    return ElevatedButton(
-        onPressed: () {
-          String nama = _namaController.text;
-          String nim = _nimController.text;
-          int tahun = int.parse(_tahunController.text);
-          Navigator.of(context).push(MaterialPageRoute(
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            String nama = _namaController.text;
+            String nim = _nimController.text;
+            int tahun = int.parse(_tahunController.text);
+            Navigator.of(context).push(MaterialPageRoute(
               builder: (context) =>
-                  TampilData(nama: nama, nim: nim, tahun: tahun)));
-        },
-        child: const Text('Simpan'));
+                  TampilData(nama: nama, nim: nim, tahun: tahun),
+            ));
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 9, 46, 210),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 60),
+            textStyle: const TextStyle(
+              fontSize: 16,
+            ),
+            foregroundColor: const Color.fromARGB(255, 255, 255, 255),
+          ),
+          child: const Text('Simpan'),
+        ),
+        const SizedBox(height: 75),
+        Image.asset(
+          'images/minisui.png',
+          width: 300,
+          height: 300,
+        ),
+      ],
+    );
   }
+
 }
